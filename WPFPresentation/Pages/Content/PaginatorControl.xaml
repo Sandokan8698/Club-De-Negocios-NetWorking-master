@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WPFPresentation.Pages.Content.PaginatorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="190">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <mui:ModernButton x:Name="ButtonFirstPage" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource FirstPagetIcon}" Margin="0,0,6,0"/>
+            <mui:ModernButton x:Name="ButtonPreviusPage" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource PreviusPageIcon}" Margin="0,0,6,0"/>
+           
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <mui:BBCodeBlock FontWeight="Bold" Name="lblPageIndex" BBCode="{Binding CurrentPageNumber}" Width="Auto" Margin="0,0,6,0"/>
+                <mui:BBCodeBlock FontWeight="Bold"  BBCode="de"/>
+                <mui:BBCodeBlock FontWeight="Bold" Name="lblNumberOfPages" BBCode="{Binding TotalPage}" Width="Auto" Margin="6,0,6,0"/>
+            </StackPanel>
+            
+            <mui:ModernButton x:Name="ButtonNextPage" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource NextPageIcon}" Margin="0,0,6,0"/>
+            <mui:ModernButton x:Name="ButtonLastPage" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource LastPageIcon}" Margin="0,0,6,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

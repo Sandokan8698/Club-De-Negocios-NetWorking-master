@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="WPFPresentation.Pages.Content.FilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel MinWidth="100">
+
+            <TextBlock Margin="16,0,0,8" Text="APLICAR FILTRO" Style="{StaticResource Heading2}"/>
+            
+            <!-- actual form starts here -->
+            <StackPanel Margin="16,0,0,0" x:Name="Form" Orientation="Vertical">
+
+
+                <StackPanel.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="Margin" Value="0,0,0,4" />
+                    </Style>
+                    <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                        <Setter Property="Width" Value="100" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                    <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                        <Setter Property="Padding" Value="0,3" />
+                    </Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+                        <Setter Property="Padding" Value="0,3" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <StackPanel>
+                    <Label Content="Cliente"/>
+                    <controls:AutoCompleteBox  Width="150" ItemsSource="{Binding Clientes}"
+                                              SelectedItem="{Binding Filter.Cliente, Mode=TwoWay}"
+                                              ValueMemberPath="Nombre"
+                                              ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}" x:Name="ClienteAutoComplete" />
+                    </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Venta"/>
+                    <TextBox Width="100" x:Name="TextVenta" Text="{Binding Filter.VentaId, Mode=TwoWay}"></TextBox>
+                </StackPanel>
+
+                <StackPanel x:Name="EmpresaFilter">
+                    <Label Content="Empresa"/>
+                    <controls:AutoCompleteBox  Width="150" ItemsSource="{Binding Proveedores}"
+                                               SelectedItem="{Binding Filter.Proveedor, Mode=TwoWay}"
+                                               ValueMemberPath="Nombre"
+                                               ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}" x:Name="ProveedorAutoComplete" />
+                </StackPanel>
+
+                <StackPanel x:Name="IdentificadorFilter">
+                    <Label Content="Pedido.ID"/>
+                    <TextBox Width="150" x:Name="TextIdentificador" Text="{Binding Filter.Identificador, Mode=TwoWay}"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Desde" />
+                    <DatePicker SelectedDate="{Binding Filter.Desde, Mode=TwoWay}"/>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Hasta"/>
+                    <DatePicker SelectedDate="{Binding Filter.Hasta, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Usar Fecha"/>
+                    <CheckBox IsChecked="{Binding Filter.UsarFecha}"/>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Button Content="Aplicar" Margin="100,16,0,0" HorizontalAlignment="Left" x:Name="ButtonApplyFilter" />
+                    <Button Content="Quitar" Margin="15,16,0,0" HorizontalAlignment="Left" x:Name="ButtonRemoveFilter" />
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

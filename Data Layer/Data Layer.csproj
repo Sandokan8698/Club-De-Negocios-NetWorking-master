@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{826C6BA6-B2BD-4D7D-A7A3-AAE3C1550801}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data_Layer</RootNamespace>
+    <AssemblyName>Data Layer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FakerTest">
+      <HintPath>F:\EL DUENO\PROJECTS\WORKING\Club De Negocios NetWorking\TestWhatIDontKno\bin\Debug\FakerTest.dll</HintPath>
+    </Reference>
+    <Reference Include="RefactorThis.GraphDiff, Version=3.0.0.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\RefactorThis.GraphDiff.3.0.0\lib\RefactorThis.GraphDiff.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IUnitOfWork.cs" />
+    <Compile Include="Abstract\Repositories\ICampanllaRepository.cs" />
+    <Compile Include="Abstract\Repositories\IClienteRepository.cs" />
+    <Compile Include="Abstract\Repositories\IPedidoRepositoy.cs" />
+    <Compile Include="Abstract\Repositories\IProveedorRepository.cs" />
+    <Compile Include="Abstract\Repositories\IRepository.cs" />
+    <Compile Include="Abstract\Repositories\ISubPedidoEntryRepository.cs" />
+    <Compile Include="Abstract\Repositories\ISubPedidoRepository.cs" />
+    <Compile Include="Abstract\Repositories\ITrabajadorRepository.cs" />
+    <Compile Include="Abstract\Repositories\IVentaRepository.cs" />
+    <Compile Include="Implementations\Repositories\CampanllaRepository.cs" />
+    <Compile Include="Implementations\Repositories\ClienteRepository.cs" />
+    <Compile Include="Implementations\Repositories\DomainContextRepository.cs" />
+    <Compile Include="Implementations\Repositories\PedidoRepository.cs" />
+    <Compile Include="Implementations\Repositories\ProveedorRepository.cs" />
+    <Compile Include="Implementations\Repositories\Repository.cs" />
+    <Compile Include="Implementations\Repositories\SubpedidoEntryRepository.cs" />
+    <Compile Include="Implementations\Repositories\SubPedidoRepository.cs" />
+    <Compile Include="Implementations\Repositories\TrabajadorRepository.cs" />
+    <Compile Include="Implementations\Repositories\VentaRepository.cs" />
+    <Compile Include="Implementations\UnitOfWork.cs" />
+    <Compile Include="Migrations\201710292053541_Initial.cs" />
+    <Compile Include="Migrations\201710292053541_Initial.Designer.cs">
+      <DependentUpon>201710292053541_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710310223319_EditSubpedidoPedido.cs" />
+    <Compile Include="Migrations\201710310223319_EditSubpedidoPedido.Designer.cs">
+      <DependentUpon>201710310223319_EditSubpedidoPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710310225465_EditSubpedidoPedido2.cs" />
+    <Compile Include="Migrations\201710310225465_EditSubpedidoPedido2.Designer.cs">
+      <DependentUpon>201710310225465_EditSubpedidoPedido2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710310259107_EditSubpedidoEntry.cs" />
+    <Compile Include="Migrations\201710310259107_EditSubpedidoEntry.Designer.cs">
+      <DependentUpon>201710310259107_EditSubpedidoEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710310541582_EditSubpedidoEntryAndOthers.cs" />
+    <Compile Include="Migrations\201710310541582_EditSubpedidoEntryAndOthers.Designer.cs">
+      <DependentUpon>201710310541582_EditSubpedidoEntryAndOthers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711010652533_Otra.cs" />
+    <Compile Include="Migrations\201711010652533_Otra.Designer.cs">
+      <DependentUpon>201711010652533_Otra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711021722104_UpdateCliente.cs" />
+    <Compile Include="Migrations\201711021722104_UpdateCliente.Designer.cs">
+      <DependentUpon>201711021722104_UpdateCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711101843014_SubPedidoUniqueIdentificador.cs" />
+    <Compile Include="Migrations\201711101843014_SubPedidoUniqueIdentificador.Designer.cs">
+      <DependentUpon>201711101843014_SubPedidoUniqueIdentificador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711101946575_UpdateNumeroCuentaProveedor.cs" />
+    <Compile Include="Migrations\201711101946575_UpdateNumeroCuentaProveedor.Designer.cs">
+      <DependentUpon>201711101946575_UpdateNumeroCuentaProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712242317407_AnticipoStuff.cs" />
+    <Compile Include="Migrations\201712242317407_AnticipoStuff.Designer.cs">
+      <DependentUpon>201712242317407_AnticipoStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClubNegociosNetworkingContext.cs" />
+    <Compile Include="Implementations\ComparisonExtend.cs" />
+    <Compile Include="Utils\FilterEngine\AbstractSearch.cs" />
+    <Compile Include="Utils\FilterEngine\DateSearch.cs" />
+    <Compile Include="Utils\FilterEngine\EnumSearch.cs" />
+    <Compile Include="Utils\FilterEngine\NumericSearch.cs" />
+    <Compile Include="Utils\FilterEngine\SearchExtensions.cs" />
+    <Compile Include="Utils\FilterEngine\TextSearch.cs" />
+    <Compile Include="Utils\FilterEngine\TypeExtensions.cs" />
+    <Compile Include="Utils\ServiceFilter\FilterCreator.cs" />
+    <Compile Include="Utils\ServiceFilter\FilterCreatorFactory.cs" />
+    <Compile Include="Utils\ServiceFilter\FilterEntitie.cs" />
+    <Compile Include="Utils\ServiceFilter\SubPedidoEntryFilterCreator.cs" />
+    <Compile Include="Utils\ServiceFilter\SubPedidoFilterCreator.cs" />
+    <Compile Include="Utils\ServiceFilter\VentasFilterCreator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain Layer\Domain Layer.csproj">
+      <Project>{7dc752e4-2234-40e8-a43e-ec47f32828f3}</Project>
+      <Name>Domain Layer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710292053541_Initial.resx">
+      <DependentUpon>201710292053541_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310223319_EditSubpedidoPedido.resx">
+      <DependentUpon>201710310223319_EditSubpedidoPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310225465_EditSubpedidoPedido2.resx">
+      <DependentUpon>201710310225465_EditSubpedidoPedido2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310259107_EditSubpedidoEntry.resx">
+      <DependentUpon>201710310259107_EditSubpedidoEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310541582_EditSubpedidoEntryAndOthers.resx">
+      <DependentUpon>201710310541582_EditSubpedidoEntryAndOthers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711010652533_Otra.resx">
+      <DependentUpon>201711010652533_Otra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021722104_UpdateCliente.resx">
+      <DependentUpon>201711021722104_UpdateCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101843014_SubPedidoUniqueIdentificador.resx">
+      <DependentUpon>201711101843014_SubPedidoUniqueIdentificador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101946575_UpdateNumeroCuentaProveedor.resx">
+      <DependentUpon>201711101946575_UpdateNumeroCuentaProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712242317407_AnticipoStuff.resx">
+      <DependentUpon>201712242317407_AnticipoStuff.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

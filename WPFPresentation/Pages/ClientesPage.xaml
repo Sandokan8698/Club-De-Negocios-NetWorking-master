@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="WPFPresentation.Pages.ClientesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:content="clr-namespace:WPFPresentation.Pages.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition  Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel MinWidth="200" Margin="0,0,8,0">
+           <content:ClienteNewControl></content:ClienteNewControl>
+        </StackPanel>
+
+        <GridSplitter Grid.Row="0" Grid.Column="1" />
+
+        <DataGrid  x:Name="Dgclientes" Grid.Column="2" ItemsSource="{Binding Clientes}" AutoGenerateColumns="False" Margin="32,16,32,0" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <mui:DataGridTextColumn Header="Nombre"   Binding="{Binding Path=Nombre, Mode=OneWay, StringFormat=C}" IsReadOnly="True"/>
+                <mui:DataGridTextColumn Header="Apellidos"   Binding="{Binding Path=Apellidos, Mode=OneWay, StringFormat=C}" IsReadOnly="True"/>
+                <mui:DataGridTextColumn Header="Cedula"  Binding="{Binding Path=NumeroDocumento, Mode=OneWay, StringFormat=C}" IsReadOnly="True"/>
+                <mui:DataGridTextColumn Header="Fecha.N" Width="90" IsReadOnly="True" Binding="{Binding Path=FechaNacimiento, Mode=OneWay, StringFormat=d}" />
+                <mui:DataGridTextColumn Header="Telefono"  Binding="{Binding Path=Telefono, Mode=OneWay, StringFormat=C}" IsReadOnly="True"/>
+                <mui:DataGridTextColumn Header="Direccion" Width="*" Binding="{Binding Path=Direccion, Mode=OneWay, StringFormat=C}" IsReadOnly="True"/>
+                <DataGridTemplateColumn x:Name="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <mui:ModernButton EllipseDiameter="20"  EllipseStrokeThickness="0" IconWidth="15" IconHeight="15" IconData="{StaticResource EditIcon}" x:Name="ButtonDelete" Margin="0,0,6,0" Click="ButtonDelete_OnClick" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>
+
+
+

@@ -1,0 +1,95 @@
+﻿<mui:ModernDialog x:Class="WPFPresentation.Pages.SubPedidoEntryDialogEditPage"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  mc:Ignorable="d" 
+                  Loaded="SubPedidoEntryDialogEditPage_OnLoaded"
+                  d:DesignHeight="300" d:DesignWidth="530"
+                  MaxHeight="450"   MaxWidth="530"
+                  MinHeight="450"   MinWidth="530"
+                  Title="HISTORIAL-ABONO">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--Informacion General de la Orden -->
+            <Border  Grid.Row="3" BorderThickness="0" BorderBrush="DarkGray" Padding="6"  Margin="0,16,0,22">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <DockPanel Grid.Column="0">
+                        <StackPanel  Orientation="Horizontal"/>
+                        <StackPanel Margin="6,0,0,0"  Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Número" FontWeight="Bold"  Margin="0,0,8,0" />
+                            <TextBox Width="150" TextAlignment="Center" Text="{Binding SubPedido.Identificador, Mode=TwoWay, ValidatesOnDataErrors=True}" IsReadOnly="True" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Margin="6,0,0,0">
+                        <StackPanel Orientation="Horizontal"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="2" Margin="6,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center"  Text="Abono" FontWeight="Bold" Margin="0,0,8,0" />
+                            <TextBox GotFocus="UIElement_OnGotFocus" x:Name="TextBoxAbono" Width="80" Height="25" TextAlignment="Center" Text="{Binding Abono, Mode=TwoWay, ValidatesOnDataErrors=True, StringFormat='$#,##0.00;$(#,##0.00)'}" />
+                        </StackPanel>
+                    </DockPanel>
+                    <Button Margin="6,0,0,0" x:Name="ButtonAddSubPedioEntry" Grid.Column="3" Height="26" VerticalAlignment="Top" Click="ButtonAddSubPedioEntry_OnClick">Agregar</Button>
+                </Grid>
+
+            </Border>
+
+            <!-- Carro de Ventas -->
+            <DataGrid x:Name="DgSubPedidosEntrys" Grid.Row="4" MaxHeight="300" ItemsSource="{Binding SubPedido.SubPedidosEntrys, Mode=OneWay,NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                      AutoGenerateColumns="False" Margin="0,16,0,0" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <mui:DataGridTextColumn Header="Fecha.C" Width="*" IsReadOnly="True" Binding="{Binding Path=FechaCreacion, Mode=TwoWay}">
+                        <mui:DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="TextAlignment" Value="Center"></Setter>
+                            </Style>
+                        </mui:DataGridTextColumn.ElementStyle>
+                    </mui:DataGridTextColumn>
+                     <mui:DataGridTextColumn Header="Abono"  Width="100" IsReadOnly="True" Binding="{Binding Path=Abono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='$#,##0.00;$(#,##0.00)'}" >
+                        <mui:DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="TextAlignment" Value="Center"></Setter>
+                            </Style>
+                        </mui:DataGridTextColumn.ElementStyle>
+                    </mui:DataGridTextColumn>
+                   
+                    <DataGridTemplateColumn x:Name="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <mui:ModernButton EllipseDiameter="20"  EllipseStrokeThickness="0" IconWidth="15" IconHeight="15" IconData="{StaticResource DeleteIncon}" x:Name="ButtonDelete" Margin="0,0,6,0" Click="ButtonDelete_OnClick"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <mui:ModernProgressRing IsActive="{Binding IsLoading}" Width="80" Height="80" Style="{Binding SelectedItem.Tag, ElementName=CmbRingStyle}" />
+    </Grid>
+
+
+
+</mui:ModernDialog>
