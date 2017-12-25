@@ -143,6 +143,9 @@
     <Compile Include="Converters\VentaNumberConverter.cs" />
     <Compile Include="FlickrImageLoader.cs" />
     <Compile Include="Models\Provider\IFacadeProvider.cs" />
+    <Compile Include="Pages\SubPedidoAddValueDialogPage.xaml.cs">
+      <DependentUpon>SubPedidoAddValueDialogPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AnticipoAddViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Models\AutoMapperExtension.cs" />
@@ -329,6 +332,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SubPedidoAddValueDialogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SubPedidoEntryReportePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -452,8 +459,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\DailyPaymentReport.rdlc" />
-    <EmbeddedResource Include="Reports\VentaReport.rdlc" />
+    <EmbeddedResource Include="Reports\DailyPaymentReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VentaReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

@@ -32,6 +32,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                                 <mui:ModernButton x:Name="ButtonPrintVenta" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource PrintIncon}" Margin="0,0,6,0" Click="ButtonPrintVenta_OnClick" />
+                                <mui:ModernButton x:Name="ButtonPrintFilteredSubReport" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource PrintFilteredIncon}" Margin="0,0,6,0" Click="ButtonPrintFilteredSubReport_OnClick" />
                                 <mui:ModernButton x:Name="ButtonPrintSubReport" EllipseDiameter="30" EllipseStrokeThickness="2" IconWidth="15" IconHeight="15" IconData="{StaticResource PrinSubReportIcon}" Margin="0,0,6,0" />
                             </StackPanel>
                         </DockPanel>

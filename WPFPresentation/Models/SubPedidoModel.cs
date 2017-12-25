@@ -43,6 +43,13 @@ namespace WPFPresentation.Models
                     OnPropertyChanged("PrecioProveedor");
                    
                     Notify("PrecioProveedor", value);
+
+                    //Porque el Notify Actualiza los observers que miran a esta clase
+                    //Pero no actualiza la propiedad que se ecuentra en esta clase
+                    //lo q significa q los padres de esta clase van a reflejar el cambio
+                    //que ocurre pero en la instancia de esta clase en su propiedad deuda va aparacer q no 
+                    //ha pasado nada NO LO BORRES
+                    OnPropertyChanged("Deuda");
                 }
             }
         }

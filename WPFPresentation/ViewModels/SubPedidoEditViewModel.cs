@@ -63,7 +63,15 @@ namespace WPFPresentation.ViewModels
             
         }
 
-        
+        private SubPedidoModel _selectedSubPedio;
+
+        public SubPedidoModel SelectedSubPedio
+        {
+            get { return _selectedSubPedio; }
+            set { _selectedSubPedio = value; }
+        }
+
+
         #endregion
 
         #region Ctor
@@ -119,7 +127,7 @@ namespace WPFPresentation.ViewModels
             Identificador = UniqueKeyGenerator.GetUniqueKey();
             
         }
-
+       
         public void RemoveSubPedido(SubPedidoModel subPedido)
         {
             if (Authenticator.Instance.IsAdming)
@@ -149,6 +157,49 @@ namespace WPFPresentation.ViewModels
             SubPedidoEntryDialogEditPage subPedidoEntryDialog = new SubPedidoEntryDialogEditPage(subPedidoModel);
             subPedidoEntryDialog.ShowDialog();
         }
+        
+        public void ShowSubPedidoAddValueDialog(KeyEventArgs e)
+        {
+            if (e.Key == Key.Space && SelectedSubPedio != null)
+            {
+                SubPedidoAddValueDialogPage subPedidoAdd = new SubPedidoAddValueDialogPage();
+                subPedidoAdd.ShowDialog();
+
+                if (subPedidoAdd.MessageBoxResult == MessageBoxResult.OK)
+                {
+                    try
+                    {
+                        if (subPedidoAdd.PrecioProveedor == 0)
+                        {
+                            var dlg = new ModernDialog
+                            {
+                                Title = "Aviso",
+                                Content = "El valor de este elemento es de 0, desea continuar ?"
+                            };
+                            dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton };
+                            dlg.ShowDialog();
+
+                            if (dlg.MessageBoxResult != MessageBoxResult.OK)
+                            {
+                                return;
+                            }
+                        }
+                       
+
+                        SelectedSubPedio.PrecioProveedor = subPedidoAdd.PrecioProveedor;
+                        FacadeProvider.SubPedidoProvider().Update(SelectedSubPedio);
+                        ModernDialog.ShowMessage("El elemento fue actualizado", "ÉXITO", MessageBoxButton.OK);
+                    }
+                    catch (Exception exception)
+                    {
+                        ModernDialog.ShowMessage(exception.Message, "ERROR EN LA OPERACIÓN", MessageBoxButton.OK);
+                    }
+                   
+                }
+                
+            }
+           
+        }
 
         #endregion
 
@@ -165,7 +216,7 @@ namespace WPFPresentation.ViewModels
 
             public override void OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
             {
-               e.CanExecute = viewModel.PrecioProveedor > 0 & !string.IsNullOrEmpty(viewModel.Identificador);
+               e.CanExecute = !string.IsNullOrEmpty(viewModel.Identificador);
                e.Handled = true;
             }
 

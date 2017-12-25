@@ -71,7 +71,11 @@ namespace WPFPresentation.Pages
             TextBoxPrecio.Focus();
         }
 
-       
+
+        private void DgSubPedidos_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            _subPedidoEditViewModel.ShowSubPedidoAddValueDialog(e);
+        }
     }
 }
 

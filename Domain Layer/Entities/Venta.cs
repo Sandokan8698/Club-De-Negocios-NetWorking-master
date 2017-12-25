@@ -33,6 +33,12 @@ namespace Domain_Layer.Entities
         public ICollection<Pedido> Pedidos { get; set; }
 
         [NotMapped]
+        public decimal PrecioProveedor { get { return Pedidos.Sum(sp => sp.PrecioProveedor); } }
+
+        [NotMapped]
+        public decimal Abono { get { return Pedidos.Sum(sp => sp.Abono); } }
+
+        [NotMapped]
         public decimal Deuda
         {
             get { return Pedidos.Sum(p => p.Deuda); }

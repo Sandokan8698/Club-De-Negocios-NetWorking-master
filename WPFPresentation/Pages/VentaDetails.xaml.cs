@@ -36,14 +36,6 @@ namespace WPFPresentation.Pages
 
 
         }
-
-
-
-        private void ButtonPrintVenta_OnClick(object sender, RoutedEventArgs e)
-        {
-            _ventaDetailViewModel.ShowVentPrintDialog();
-        }
-
         private void ButtonDelete_OnClick(object sender, RoutedEventArgs e)
         {
 
@@ -72,6 +64,16 @@ namespace WPFPresentation.Pages
         private void ButtonSave_OnClick(object sender, RoutedEventArgs e)
         {
             AutoCompleteBoxEmpresa.Focus();
+        }
+
+        private void ButtonPrintVenta_OnClick(object sender, RoutedEventArgs e)
+        {
+            _ventaDetailViewModel.ShowVentPrintDialog();
+        }
+
+        private void ButtonPrintFilteredSubReport_OnClick(object sender, RoutedEventArgs e)
+        {
+            _ventaDetailViewModel.ShowVentPrintFilteredDialog();
         }
     }
 }

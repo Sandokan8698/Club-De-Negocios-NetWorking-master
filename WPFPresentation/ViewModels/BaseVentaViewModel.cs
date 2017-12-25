@@ -124,7 +124,6 @@ namespace WPFPresentation.ViewModels
                 e.CanExecute = viewModel.Venta.Cliente != null
                                & viewModel.Proveedor != null
                                & !string.IsNullOrEmpty(viewModel.Identificador)
-                               & viewModel.PrecioProveedor > 0
                                & deuda == 0;
 
                 e.Handled = true;

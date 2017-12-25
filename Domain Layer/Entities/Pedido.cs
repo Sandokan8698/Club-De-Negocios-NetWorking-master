@@ -28,8 +28,10 @@ namespace Domain_Layer.Entities
 
         [NotMapped]
         public decimal PrecioProveedor { get { return SubPedidos.Sum(sp => sp.PrecioProveedor); }}
+
         [NotMapped]
-        public decimal Abono { get { return SubPedidos.Sum(sp => sp.Abono); }}    
+        public decimal Abono { get { return SubPedidos.Sum(sp => sp.Abono); }}
+
         [NotMapped]
         public decimal Deuda { get { return SubPedidos.Sum(sp => sp.Deuda); } }
         public ICollection<SubPedido> SubPedidos { get; set; }

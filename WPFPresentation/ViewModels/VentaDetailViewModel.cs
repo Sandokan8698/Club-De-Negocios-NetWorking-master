@@ -137,6 +137,14 @@ namespace WPFPresentation.ViewModels
             ventaPrintPage.ShowDialog();
         }
 
+        public void ShowVentPrintFilteredDialog()
+        {
+            VentaPrintPage ventaPrintPage = new VentaPrintPage();
+            ventaPrintPage.ApplayFilter = true;
+            ventaPrintPage.VentaModels = Venta;
+            ventaPrintPage.ShowDialog();
+        }
+
         #endregion
 
         #region Command

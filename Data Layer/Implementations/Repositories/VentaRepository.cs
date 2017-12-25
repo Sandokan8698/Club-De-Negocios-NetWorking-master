@@ -63,7 +63,7 @@ namespace Data_Layer.Implementations.Repositories
         public Venta GetVentaWithDeuda(int clientId)
         {
             var ventas = GetAll().Where(v => v.ClienteId == clientId);
-            return ventas.FirstOrDefault(v => v.Deuda > 0);
+            return ventas.FirstOrDefault(v => v.Deuda > 0 || v.Abono > v.PrecioProveedor);
         }
  
         public IEnumerable<Venta> GetClienteVentasFiltered(Cliente cliente, FilterEntitie filterEntitie)

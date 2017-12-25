@@ -21,7 +21,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-           
+
             <!--Informacion General de la Orden -->
             <Border  Grid.Row="3" BorderThickness="0" BorderBrush="DarkGray" Padding="6"  Margin="0,16,0,22">
                 <Grid>
@@ -36,7 +36,7 @@
 
                     <DockPanel Grid.Column="0">
                         <StackPanel  Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Top" Text="Proveedor" FontWeight="Bold"  Margin="0,5,8,0" />
+                            <TextBlock Text="Proveedor" FontWeight="Bold"  Margin="0,5,8,5" />
                             <TextBox Width="150" IsEnabled="False" Text="{Binding Pedido.Proveedor.Nombre}" Height="25" VerticalAlignment="Top"/>
                         </StackPanel>
                         <StackPanel Margin="6,0,0,0"  Orientation="Horizontal">
@@ -62,8 +62,8 @@
             </Border>
 
             <!-- SubPedidos List -->
-            <DataGrid x:Name="DgSubPedidos" Grid.Row="4" MaxHeight="300" ItemsSource="{Binding Pedido.SubPedidos, Mode=OneWay,NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
-                      AutoGenerateColumns="False" Margin="0,16,0,0" CanUserAddRows="False" SelectionUnit="Cell">
+            <DataGrid x:Name="DgSubPedidos" Grid.Row="4" MaxHeight="300" SelectedItem="{Binding SelectedSubPedio}" ItemsSource="{Binding Pedido.SubPedidos, Mode=OneWay,NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                      AutoGenerateColumns="False" Margin="0,16,0,0" CanUserAddRows="False" KeyDown="DgSubPedidos_OnKeyDown">
                 <DataGrid.Columns>
                     <mui:DataGridTextColumn Header="Fecha.C" Width="*" IsReadOnly="True" Binding="{Binding Path=FechaCreacion, Mode=TwoWay}">
                         <mui:DataGridTextColumn.ElementStyle>
@@ -86,14 +86,14 @@
                             </Style>
                         </mui:DataGridTextColumn.ElementStyle>
                     </mui:DataGridTextColumn>
-                    <mui:DataGridTextColumn Header="Abono"  Width="100" IsReadOnly="True" Binding="{Binding Path=Abono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='$#,##0.00;$(#,##0.00)'}" >
+                    <mui:DataGridTextColumn Header="Abono"  Width="100" IsReadOnly="True" Binding="{Binding Path=Abono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=c}" >
                         <mui:DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="TextAlignment" Value="Center"></Setter>
                             </Style>
                         </mui:DataGridTextColumn.ElementStyle>
                     </mui:DataGridTextColumn>
-                    <mui:DataGridTextColumn Header="Saldo" Width="100" IsReadOnly="True"  Binding="{Binding Path=Deuda, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,  StringFormat='$#,##0.00;$(#,##0.00)'}">
+                    <mui:DataGridTextColumn Header="Saldo" Width="100" IsReadOnly="True"  Binding="{Binding Path=Deuda, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,  StringFormat=c}">
                         <mui:DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="TextAlignment" Value="Center"></Setter>

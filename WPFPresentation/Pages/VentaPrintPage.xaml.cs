@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Shapes;
 using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using WPFPresentation.Converters;
 using WPFPresentation.Models;
 using WPFPresentation.Reports.Models;
@@ -50,20 +51,8 @@ namespace WPFPresentation.Pages
                     }
                 });
 
-            List<PedidoDataSetModel> pedidoDataSet = new List<PedidoDataSetModel>();
-
-            foreach (var ventaModelsPedido in VentaModels.Pedidos)
-            {
-                pedidoDataSet.Add(new PedidoDataSetModel
-                {
-                    ItemNumero = ventaModelsPedido.ItemNumero,
-                    NombreProveedor = ventaModelsPedido.Proveedor.Nombre,
-                    PrecioProveedor = ventaModelsPedido.PrecioProveedor,
-                    Abono =  ventaModelsPedido.Abono,
-                    Deuda = ventaModelsPedido.Deuda
-                });
-            }
-
+            List<PedidoDataSetModel> pedidoDataSet = LoadPedidos();
+          
             var pedidosDataSource = new ReportDataSource("PedidosDataset",pedidoDataSet);
 
             ReportViewer.ZoomMode = ZoomMode.PageWidth;
@@ -74,6 +63,50 @@ namespace WPFPresentation.Pages
 
         }
 
+        private List<PedidoDataSetModel> LoadPedidos()
+        {
+            List<PedidoDataSetModel> pedidoDataSet = new List<PedidoDataSetModel>();
+
+            if (!ApplayFilter)
+            {
+               
+                foreach (var ventaModelsPedido in VentaModels.Pedidos)
+                {
+                    pedidoDataSet.Add(new PedidoDataSetModel
+                    {
+                        ItemNumero = ventaModelsPedido.ItemNumero,
+                        NombreProveedor = ventaModelsPedido.Proveedor.Nombre,
+                        PrecioProveedor = ventaModelsPedido.PrecioProveedor,
+                        Abono = ventaModelsPedido.Abono,
+                        Deuda = ventaModelsPedido.Deuda
+                    });
+                }
+            }
+            else
+            {
+                foreach (var ventaModelsPedido in VentaModels.Pedidos)
+                {
+                    if (ventaModelsPedido.Deuda > 0)
+                    {
+                        pedidoDataSet.Add(new PedidoDataSetModel
+                        {
+                            ItemNumero = ventaModelsPedido.ItemNumero,
+                            NombreProveedor = ventaModelsPedido.Proveedor.Nombre,
+                            PrecioProveedor = ventaModelsPedido.PrecioProveedor,
+                            Abono = ventaModelsPedido.Abono,
+                            Deuda = ventaModelsPedido.Deuda
+                        });
+                    }
+                   
+                }
+            }
+           
+
+            return pedidoDataSet;
+        }
+
         public VentaModel VentaModels { get; set; }
+
+        public bool ApplayFilter { get; set; }
     }
 }
